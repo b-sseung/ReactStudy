@@ -1,0 +1,47 @@
+import 구문에는 자바스크립트 파일 말고도 특정파일을 불러와 사용할 수 있음
+
+(대표적인 번들러인 웹팩을 사용하면 SVG, CSS 파일도 불러올 수 있음) → create-react-app을 사용하면 별도의 설정을 할 필요 없음
+
+JSX : 자바스크립트의 확장 문법으로 XML과 비슷하게 생겼는데, 브라우저에서 실행되기 전에 번들링 과정에서 바벨을 사용하여 자바스크립트 형태로 코드가 변환됨
+JSX 규칙
+- 컴포넌트에 여러 요소가 있다면 반드시 부모 요소 하나로 감싸야 함
+- 자바스크립트 표현식을 작성하려면 JSX 내부에서 코드를 { }로 감싸면 됨
+- 특정 조건을 만족하면 렌더링, 만족하지 않을 때 렌더링하지 않을 때 && 연산자 사용
+	Ex) name === ‘리액트’ ? <h1>리액트.</h1> : null
+	name === ‘리액트’ && <h1>리액트.</h1>로 선언할 수 있음
+- 어떤 값이 undefined일 경우 || 연산자를 사용하여 해당 값이 undefined일 때 사용할 값을 지정할 수 있음 → { name || ‘리액트’ } ☞ name이 undefined이면 리액트로 보여줌
+- 스타일 이름 중 background-color처럼 – 문자가 포함되면 – 문자를 없애고 카멜 표기법으로 작성함 → background-color는 backgroundColor, font-size는 fontSize 등
+- class명은 class가 아닌 className으로 설정해 주어야 함
+- 태그는 꼭 닫아야 함
+- 주석의 경우 {/* … */} 와 같은 형식으로 작성해야 함
+클래스형 컴포넌트는 state 기능 및 라이프사이클 기능 사용 가능, 임의 메서드 정의 가능
+- render 함수가 꼭 있어야 하고, render 함수 안에 보여 주어야 할 JSX를 반환해야 함
+
+props : properties를 줄인 표현으로 컴포넌트 속성을 설정할 때 사용하는 요소. props의 값은 컴포넌트 함수의 파라미터로 받아와서 사용할 수 있음
+- defaultProps : props 값을 따로 지정하지 않았을 때 보여줄 기본값을 설정
+- children : 리액트 컴포넌트를 사용할 때 컴포넌트 태그 사이의 내용을 보여주는 props
+- 비구조화 할당 문법으로 props 내부 값 추출 가능
+const { name, children } = props; → 원래는 props.name, props.children으로 가져올 값을 비구조화 할당 문법을 사용하여 내부 값을 바로 추출
+- propTypes를 통해서 props의 데이터 타입을 지정할 수 있음 (값이 나오긴 하지만 콘솔에 경고가 뜨면서 propTypes가 잘못되었다는 것을 알려줌)
+- isRequired를 사용하여 propTypes를 지정하지 않았을 때 경고 메시지를 띄울 수 있음
+
+PropTypes 종류
+- array, arrayOf(다른 PropType), bool, func, number, object, string, symbol, node, instanceOf(클래스), oneOf([‘요소1’, ‘요소2’]), oneOfType([proptype, proptype]), objectOf(proptype), shape({ 스키마, 스키마 }), any
+
+state : 컴포넌트 내부에서 바뀔 수 있는 값을 의미하며, 클래스형 컴포넌트가 지니고 있는 state와 함수 컴포넌트에서 useState라는 함수를 통해 사용하는 state가 있음
+	→ props는 부모 컴포넌트가 설정하는 값이라 읽기 전용임
+※ 클래스형 컴포넌트에서 constructor을 작성할 때는 반드시 super(props)를 호출해야 함
+
+useState 함수의 인자에는 상태의 초깃값을 넣어줌 [값을 담는 객체, 값을 변경할 때 쓸 함수]
+	→ 두 번째 원소의 함수를 세터(Setter) 함수라고 부름
+	Ex) const [color, setColor] = useState(‘black’);
+→ color에 초기값 black이 담기고, 값을 변경하고자 할 땐 setColor를 사용
+ref : reference의 줄임말로, HTML에서 id를 사용하여 DOM에 이름을 다는 것처럼 리액트 프로젝트 내부에서 DOM에 이름을 다는 방법
+	→ 리액트 컴포넌트 안에 직접 id를 사용할 수는 있지만 같은 컴포넌트를 여러 번 사용한다고 가정할 때 유일해야할 id가 중복적으로 DOM이 여러 개 생기므로 잘못된 사용이 됨
+→ 버튼을 이용해서 스크롤바를 이동하는 등 스크롤 DOM 자체에서 이벤트 등으로 설정할 수 없는 경우 ref를 사용함
+Ref 사용 방법
+	1. 콜백 함수 : ref를 달고자 하는 요소에 ref라는 콜백 함수를 props로 전달해주면 됨
+	2. createRef : 리액트 내장함수인 createRef() 함수를 사용해서 ref props로 넣어주면 됨
+
+자바스크립트 배열의 map() 함수 : 기존 배열로 새로운 배열을 만드는 역할을 함
+	→ key 값은 무조건 설정해주어야 하며, 언제나 유일해야 함
