@@ -1,0 +1,37 @@
+CSS Module : CSS를 불러와서 사용할 때 클래스 이름을 고유한 값으로 자동으로 만들어서 컴포넌트 스타일 클래스 이름이 중첩되는 현상을 방지해 주는 기술
+  → 주 형태 : [파일이름]_[클래스이름]_[해시값]
+  → v2 버전부터는 .module.css 확장자로 파일을 저장하기만 하면 CSS Module이 적용됨 (Sass와도 함께 사용 가능 => .module.scss)
+  → 고유화된 값은 console.log를 통해 받아볼 수 있음
+  → 고유한 클래스 이름을 사용하려면 클래스를 적용하고 싶은 JSX 엘리먼트에 className={styles.[클래스  이름]} 형태로 전달해 주면 됨
+    => 여기서 styles는 해당 .module.css를 불러올 때 적은 이름임 => import styles from "./CSSModule.module.css";
+  → :global을 사용하여 전역적으로 선언한 클래스의 경우 평상시 해 왔던 것처럼 그냥 문자열로 넣어주면 됨
+  → 여러 클래스 이름을 사용하려면 백틱(`)을 이용한 템플릿 리터럴로 적던지, [클래스1, 클래스2].join('')으로 적으면 됨
+  → 일반 .css나 .scss 파일에서도 :global을 사용했던 것처럼 :local을 사용하면 CSSModule을 사용할 수 있음
+  
+classnames 라이브러리 : 여러 클래스를 적용할 때 편함
+  → className={classNames('클래스', {'클래스'})} => 그냥 ''으로 담긴 클래스는 그대로 적용, 대괄호에 담긴 클래스는 true일 경우에만 적용
+  → classnames에 내장되어 있는 bind 함수를 사용하면 styles.[클래스 이름] 형태를 사용할 필요가 없음
+    => const cx = classNames.bind(styles)를 선언해 놓고 cx('클래스 이름', '클래스 이름2') 형태로도 사용 가능
+    
+CSS-in-JS : 자바스크립트 파일 안에 스타일을 선언하는 방식
+  → 따로 .css / .scss 확장자를 가진 스타일 파일을 만들지 않아도 됨
+  → Tagged 템플릿 리터럴 : 스타일을 작성할 때 `을 사용하여 만든 문자열에 스타일 정보를 넣을 때 사용한 문법
+    => 일반 템플릿 리터럴과 다른 점은 템플릿 안에 자바스크립트 객체나 함수를 전달할 때 온전히 추출할 수 있다는 점
+  → 스타일링된 엘리먼트 만들기 : 컴포넌트 파일 상단에 styled를 불러오고, "styled.태그명"을 사용하여 구현 => ex) styled.div
+    => 태그명이 유동적이거나 특정 컴포넌트 자체에 스타일링 할 경우 styled(태그 타입 또는 컴포넌트 형식의 값)으로 처리
+  → 스타일에서 props 조회 가능
+  → props에 따른 조건부 스타일링을 할 경우 ${props => props.클래스명 && CSS`스타일 내용`} 형태인데, CSS는 무조건 적어줘야함
+  → 반응형 디자인 : 일반 CSS와 같이 media 쿼리를 사용하면 됨
+    => 함수화하여 간단하게 사용할 수 있음 => styled-components 매뉴얼에서 제공하는 유틸 함수 사용
+      => 참고: https://styled-components.com/docs/advanced#media-templates
+      
+    =>const media = Object.keys(sizes).reduce((acc, label) => { //acc는 배열, label은 string
+        acc[label] = (...args) => css`
+          @media (max-width: ${sizes[label] / 16}em) {
+            ${css(...args)}
+          }
+        `;
+        return acc;
+      }, {});
+    => media는 acc 배열을 담고 있는 것
+    => ${media.desktop`width: 768px;`} 이런 식으로 사용함 => 위의 함수에서 ...args에 `` 사이의 내용이 담겨져서 쓰이는 것
