@@ -6,3 +6,6 @@
   - eject 명령어 : yarn eject → npm run eject
   - classnames 라이브러리 설치 : yarn add classnames → npm install classnames
   - styled-components 라이브러리 설치 : yarn add styled-components → npm install styled-components
+
+### 📌 리액트 프로젝트 git pages로 배포 방법
+  - 링크 : https://codingapple.com/unit/react-build-deploy-github-pages/
