@@ -1,0 +1,12 @@
+클래스 컴포넌트의 리렌더링 방지
+  - 컴포넌트 : shouldComponentUpdate 라는 라이프사이클 활용
+
+함수 컴포넌트의 리렌더링 방지
+  - React.memo 함수를 사용하여 컴포넌트의 props가 바뀌지 않았다면, 리렌더링하지 않도록 설정
+    => ex) export default React.memo(컴포넌트명);
+
+함수 컴포넌트의 리렌더링시 함수가 바뀌지 않게 하기
+  - useState의 함수형 업데이트
+    => ex) useCallback(() => setNumber(number+1), [number],) 가 아닌 useCallback(() => seNumber((number) => number+1), [],)로 작성하면 number가 바뀔 때마다 함수가 생성되는 전의 코드보다 컴포넌트가 처음 렌더링될 때만 함수가 생성되는 후자의 코드의 성능이 더 좋음
+  - useReducer 함수 사용하기
+  
