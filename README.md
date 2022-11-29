@@ -9,3 +9,6 @@
 
 ### 📌 리액트 프로젝트 git pages로 배포 방법
   - 링크 : https://codingapple.com/unit/react-build-deploy-github-pages/
+
+### 📌 크롬 리액트 개발자 도구
+  - 링크 : https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
