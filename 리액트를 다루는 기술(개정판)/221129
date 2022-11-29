@@ -10,3 +10,17 @@
     => ex) useCallback(() => setNumber(number+1), [number],) 가 아닌 useCallback(() => seNumber((number) => number+1), [],)로 작성하면 number가 바뀔 때마다 함수가 생성되는 전의 코드보다 컴포넌트가 처음 렌더링될 때만 함수가 생성되는 후자의 코드의 성능이 더 좋음
   - useReducer 함수 사용하기
   
+불변성 : 상태를 변경하지 않는 것
+  → 불변성을 지킨다 : 기존 데이터를 수정할 때 직접 수정하지 않고, 새로운 배열을 만든 다음에 새로운 객체를 만들어 필요한 부분을 교체해 주는 방식
+    => ex)
+        const todos = [{id: 1, checked: true}, {id: checked: true}];
+        const nextTodos = [...todos];
+        
+        nextTodos[0].checked = false; => 불변성 지킨 것 아님
+        
+        nextTodos[0] = { => 불변성 지킴
+          ...nextTodos[0],
+          checked: false
+        };
+
+react-virtualized : 리스트 컴포넌트에서 스크롤되기 전에 보이지 않는 컴포넌트는 렌더링하지 않고 크기만 차지하게끔 할 수 있음
