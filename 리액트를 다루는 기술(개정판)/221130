@@ -1,0 +1,12 @@
+immer : 불변성을 유지하는 작업을 매우 간단하게 처리할 수 있음
+
+immer 사용 방법
+  import produce from 'immer';
+  const nextState = produce(originalState, draft =>  {
+    //바꾸고 싶은 값 바꾸기
+    draft.somewhere.deep.inside = 5;
+  }
+  
+  - produce(수정하고 싶은 상태, 상태를 어떻게 업데이트할지 정의하는 함수);
+    → 두 번째 파라미터로 전달되는 함수 내부에서 원하는 값을 변경하면, produce 함수가 불변성 유지를 대신해 주면서 새로운 상태를 생성해줌
+    → 만약 첫 번째 파라미터가 함수 형태라면 업데이트 함수를 반환
