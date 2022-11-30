@@ -1,5 +1,5 @@
 ### 📌 새로운 프로젝트 만들기
-  -> npm(또는 yarn) create react-app 폴더명
+  - npm(또는 yarn) create react-app 폴더명
 
 ### 📌 yarn 명령어 → npm 명령어
   - 리액트 서버 실행 : yarn start → npm start
@@ -19,3 +19,6 @@
   - 보이는 부분만 렌더링 하는 것
   - 로드할 컨텐츠의 index와 style은 반드시 부여해주어야 함
   - 참고 링크 : https://yoon-dumbo.tistory.com/entry/React-virtualized-%EB%A1%9C-%EB%B3%B4%EC%9D%B4%EB%8A%94-%EB%B6%80%EB%B6%84%EB%A7%8C-%EB%A0%8C%EB%8D%94%EB%A7%81-%ED%95%98%EC%97%AC-%EC%B5%9C%EC%A0%81%ED%99%94-%EC%8B%9C%ED%82%A4%EA%B8%B0
+
+### 📌 immer
+  - 불변성을 유지하는 작업을 매우 간단하게 처리할 
