@@ -1,0 +1,14 @@
+Context
+  - Context API를 사용하면 Context를 만들어 단 한 번에 원하는 값을 받아 와서 사용할 수 있음
+  - 값을 props로 받아오는 것이 아니라 Consumer라는 컴포넌트를 통해 value로 조회함
+      => value에는 무조건 상태 값만 있어야 하는 것이 아님. 함수도 전달해 줄 수 있음
+  - Provider를 사용하면 Context의 value를 변경할 수 있음
+      => value 값을 명시해 주어야 제대로 작동함
+
+동적 Context
+  - Provider의 value에는 상태는 state로, 업데이트 함수는 actions로 묶어서 전달하는 것이 좋음
+  - createContext의 기본값은 실제 Provider의 value에 넣는 객체의 형태오 일치시켜 주는 것이 좋음
+
+리액트에 내장되어 있는 Hooks 중에서 useContext라는 Hook을 사용하면 children에 함수를 전달하는 Render Props 패턴을 사용하지 않아도 됨
+  - 클래스형 컴포넌트의 경우에는 Hook을 사용할 수 없기 때문에 static contextType을 정의해서 사용
+  
