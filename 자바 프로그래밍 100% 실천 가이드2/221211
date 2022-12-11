@@ -1,0 +1,29 @@
+JavaFx 애플리케이션을 실행시키는 메인 클래스인 Application 자체가 추상클래스이므로 내부 함수인 start 역시 추상메소드임
+
+클래스명
+  1. Application
+      - JavaFx의 실행을 담당
+      - 실행에서는 주로 화며녀 구성, 실행, 초기화, 화면 종료와 같은 일의 관심사를 갖음
+  2. Stage
+      - 실제 윈도우 창의 역할을 함 (Swing에서의 JFrame 클래스와 같은 역할을 함)
+      - 윈도우 창 설정과 관련된 기능을 갖음 ex) 메인 화면 설정, 윈도우 타이틀, 크기 등을 설정
+  3. Scene
+      - 윈도우와 메인 화면 간에 화면을 관리하기 위한 중간 관리자로 생각하면 됨
+      - 화면 변경이 일어나더라도 기본적으로 화면에 공통으로 적용해야 할 이벤트의 경우 'Scene' 객체에서 이벤트 설정이 가능함
+      - 메인 화면의 설정 및 변경을 할 수 있음
+  4. Pane 
+      - 화면 구성을 담당하기 위한 레이아웃 중 하나
+      - Pane 내에는 화면 구성 요소가 올 수 있음
+      - 함수 : getChildren() → 해당 화면에 담겨 있는 컨트롤 목록 반환 
+
+대표 컨트롤
+  1. Button
+      - Button button = new Button('버튼명');
+      - 함수 : setPrefSize(double 너비, double 높이), setLayoutX(double x위치), setLayoutY(double y위치)
+  2. TextField
+      - TextField textField = new TextField('텍스트');
+      - 함수 : setPrefSize(double 너비, double 높이), setLayoutX(double x위치), setLayoutY(double y위치)
+
+이벤트 구현 클래스
+  - 외부 클래스를 이용하여 할 수 있고, 내부 클래스를 이용하여 구현할 수 있는데 무조건 implements EventHandler<ActionEvent>입력하여 EventHandler<ActionEvent> 인터페이스를 를 상속 받아야 함
+  - 익명 클래스를 이용하여 구현하는 방법을 주로 사용함
